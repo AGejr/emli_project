@@ -2,9 +2,9 @@
 
 ## Image sync
 
-### Setup laptop as drone
+### Setup pi as wildlife cam
 
-1. Enable ssh server on laptop
+1. Enable ssh server on pi
 ```bash
 sudo apt install openssh-server
 sudo systemctl start ssh
@@ -23,12 +23,9 @@ sudo ufw allow ssh
 ```
 PasswordAuthentication no
 PubkeyAuthentication yes
-Port 22
-AllowUsers emli
-PermitRootLogin no
 ```
 
-4. Install and configure fail2ban
+6. Install and configure fail2ban
 ```bash
 sudo apt install fail2ban
 sudo cp /etc/fail2ban/fail2ban.conf /etc/fail2ban/fail2ban.local
@@ -51,22 +48,22 @@ sudo systemctl enable fail2ban
 sudo systemctl status fail2ban
 ```
 
-### Create ssh keys on wildlife cam (pi)
+### Create ssh keys on laptop
 ```
-ssh-keygen -f ./id_ed25519_wildlifecam -t ed25519
+ssh-keygen -f ./id_ed25519_drone -t ed25519
 ```
 
-Copy the public key to the "drone".
+Copy the public key to pi
 
 ### Test ssh connection
-Test that the wildlife cam (pi) can ssh into the drone (laptop)
+Test that the drone (laptop) can ssh into the wildlife cam (pi)
 ```
-ssh -i ~/.ssh/id_ed25519_wildlifecam emli@[Drone IP]
+ssh -i ~/.ssh/id_ed25519_drone emli@[Wildlife cam IP]
 ```
 
 ### Rsync via ssh
-If the dir containing the wildlife images is `~/Images/`
+Run sync_images.sh script
 
-```
-rsync -avz ~/Images/* emli@[Drone IP]:~/Images/.
+```bash
+./sync_images.sh
 ```
