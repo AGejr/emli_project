@@ -3,7 +3,7 @@ import paho.mqtt.client as mqtt
 import json
 import time
 
-SERIAL_PORT = '/dev/ttyACM0'
+SERIAL_PORT = '/dev/ttyACM1'
 BAUD_RATE = 115200
 
 MQTT_BROKER = "10.0.0.10"
