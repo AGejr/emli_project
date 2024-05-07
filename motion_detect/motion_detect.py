@@ -11,6 +11,7 @@ sudo apt install python3-opencv
 import sys
 import cv2
 import numpy as np
+import os
 
 class cam_class():
 	def __init__(self):
@@ -60,7 +61,10 @@ class cam_class():
 			cv2.rectangle(img=img2, pt1=(x, y), pt2=(x + w, y + h), color=(255, 255, 0), thickness=4)
 		if motion:
 			motion = True
-		cv2.imwrite("./motion_detect.png", img2)
+		output_folder = "motion_detect_images"
+		if not os.path.exists(output_folder):
+			os.makedirs(output_folder)
+		cv2.imwrite("./motion_detect_images/motion_detect.png", img2)
 		return motion
 	
 
