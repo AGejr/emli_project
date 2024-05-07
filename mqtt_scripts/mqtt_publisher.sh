@@ -16,7 +16,7 @@ if [ ! -c "$SERIAL_PORT" ]; then
 fi
 
 # Configure serial port
-stty -F $SERIAL_PORT $BAUD_RATE raw
+stty -F $SERIAL_PORT 115200 raw -echo -echoe -echok -echoctl -echoke
 
 # Function to send wipe command (0-180-0)
 send_commands() {
@@ -39,6 +39,7 @@ trap cleanup SIGINT SIGTERM
 # Read data from serial port and publish to MQTT in the background
 cat $SERIAL_PORT | while read LINE
 do
+    echo "$LINE"
     mosquitto_pub -h $BROKER_IP -t $TOPIC -m "$LINE"
 done &
 # Store process id for kill later
@@ -54,6 +55,7 @@ do
     if [[ "$msg" == "activate" ]] && [[ $COMMAND_LOCK -eq 0 ]]; then
         COMMAND_LOCK=1  # Set lock to block further commands
         send_commands
-        COMMAND_LOCK=0  # Release lock after commands are sent
+        sleep 2
+	COMMAND_LOCK=0  # Release lock after commands are sent
     fi
 done
