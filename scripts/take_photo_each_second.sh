@@ -44,7 +44,7 @@ while true; do
             echo "Removing oldest image: $oldest"
             rm -- "$photo_directory/$oldest"
             # Remove the corresponding JSON file
-            local oldest_json="${oldest%.jpg}.json"
+            oldest_json="${oldest%.jpg}.json"
             if [ -f "$photo_directory/$oldest_json" ]; then
                 rm -- "$photo_directory/$oldest_json"
                 echo "Removed metadata file: $oldest_json"
