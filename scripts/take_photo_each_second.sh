@@ -33,7 +33,7 @@ while true; do
     take_photo
     sleep 1
     if [ $(ls $photo_directory/*.jpg | wc -l) -ge 2 ]; then
-        local motion_output=$(detect_motion)
+        motion_output=$(detect_motion)
         echo "$motion_output"
         if [[ "$motion_output" == *"Motion detected"* ]]; then
             echo "Motion detected - keeping images."
