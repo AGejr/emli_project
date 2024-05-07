@@ -43,11 +43,11 @@ while true; do
             # If no motion detected, delete the oldest image
             oldest=$(ls $photo_directory/*.jpg -t | tail -n 1)
             echo "Removing oldest image: $oldest"
-            rm -- "$photo_directory/$oldest"
+            rm -- "$oldest"
             # Remove the corresponding JSON file
             oldest_json="${oldest%.jpg}.json"
-            if [ -f "$photo_directory/$oldest_json" ]; then
-                rm -- "$photo_directory/$oldest_json"
+            if [ -f "$oldest_json" ]; then
+                rm -- "$oldest_json"
                 echo "Removed metadata file: $oldest_json"
             fi
             echo "No motion detected - removed the oldest image and its metadata."
