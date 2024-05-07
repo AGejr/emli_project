@@ -5,7 +5,7 @@ BROKER_IP="10.0.0.10"
 TOPIC="/trigger/external"
 
 # Path to the script
-SCRIPT="./take_photo.sh external"
+SCRIPT="/home/emli/Git/emli_project/cam/scripts/take_photo.sh external"
 
 # Function to handle messages
 message_received() {
