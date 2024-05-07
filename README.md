@@ -1,8 +1,8 @@
 # emli_project
 
-## Drone
+## [Drone](./drone/README.md)
 Contains the files related to the drone.
 
-## Cam
+## [Cam](./cam/README.md)
 Contains the files related to the wildlife cam.
 
