@@ -13,7 +13,7 @@ take_photo() {
 detect_motion() {
     local img1=$(ls $photo_directory -t | head -n 1)
     local img2=$(ls $photo_directory -t | head -n 2 | tail -n 1)
-    motion_result=$=(python3 ./detect_motion.py "$photo_directory/$img1" "$photo_directory/$img2")
+    motion_result=$=(python3 ../motion_detect/motion_detect.py "$photo_directory/$img1" "$photo_directory/$img2")
     echo "$motion_result"
     }
 
