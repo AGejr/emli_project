@@ -12,7 +12,7 @@ create_metadata ()
     \"Create Date\": \"$(date +"%Y-%m-%d %H:%M:%S.%3N%:z")\",
     \"Create Seconds Epoch\": $(date +"%s.%3N"),
     \"Trigger\": \"$1\",
-    \"Subject Distance\": $subject_distance,
+    \"Subject Distance\": \"$subject_distance\",
     \"Exposure Time\": \"$exposure_time\",
     \"ISO\": $iso
   }
