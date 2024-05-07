@@ -91,7 +91,7 @@ void loop() {
   }
 
   if  (!mqtt.connected() && WiFi.status()) {
-    Serial.print("Mosquitto broker disconnected. Reconnecting..."); 
+    Serial.println("Mosquitto broker disconnected. Reconnecting..."); 
     mqtt_connect();
   }
 
