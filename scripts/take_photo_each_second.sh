@@ -1,5 +1,7 @@
 #!/bin/bash
 
+BASE_DIR=$(pwd)
+
 take_photo() {
     local output=$(./take_photo.sh motion 2>&1)
     echo "$output"
