@@ -13,13 +13,21 @@ take_photo() {
 }
 
 detect_motion() {
-    local img1=$(ls $photo_directory -t | head -n 1)
+    local imgs=($(ls $photo_directory/*.jpg -t))
+    if [ ${#imgs[@]} -lt 2 ]; then
+        echo "Not enough images to compare."
+        return
+    fi
+
+    local img1="${imgs[0]}"
+    local img2="${imgs[1]}"
+
     echo "Image 1: $img1"
-    local img2=$(ls $photo_directory -t | head -n 2 | tail -n 1)
     echo "Image 2: $img2"
-    motion_result=$(python3 ../motion_detect/motion_detect.py "$photo_directory/$img1" "$photo_directory/$img2")
+
+    local motion_result=$(python3 ../motion_detect/motion_detect.py "$img1" "$img2")
     echo "$motion_result"
-    }
+}
 
 while true; do
     take_photo
