@@ -53,6 +53,7 @@ while [[ true ]]; do
     echo "EMLI-TEAM-16 wifi visible"
     # If already connected to the network then sync images
     if [[ $(nmcli -t -f active,ssid dev wifi | grep '^yes' | cut -d ':' -f2) == 'EMLI-TEAM-16' ]]; then
+      ./sync_time.sh
       log_wifi_stats wlp4s0 &
       log_wifi_stats_pid=$!
       sync_images
@@ -63,6 +64,7 @@ while [[ true ]]; do
       nmcli device wifi connect EMLI-TEAM-16
       if [[ $? -eq 0 ]]; then
         echo "Connected to wifi"
+        ./sync_time.sh
         log_wifi_stats wlp4s0 &
         log_wifi_stats_pid=$!
         sync_images
