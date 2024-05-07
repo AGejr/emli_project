@@ -7,7 +7,7 @@ take_photo() {
     echo "$output"
     local dir_line=$(echo "$output" | grep 'Making dir')
     if [[ $dir_line =~ Making\ dir\ (.*) ]]; then
-        photo_directory="$BASE_DIR/${BASH_REMATCH[1]}"
+        photo_directory="./${BASH_REMATCH[1]}"  # Use './' to indicate the current directory
         echo "Using directory: $photo_directory"
     fi
 }
