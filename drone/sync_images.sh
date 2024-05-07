@@ -7,6 +7,8 @@ function log_wifi_stats ()
     signal_level=$(cat /proc/net/wireless | grep $1 | tr -s ' ' | cut -d ' ' -f 4)
     link_quality=$(cat /proc/net/wireless | grep $1 | tr -s ' ' | cut -d ' ' -f 3)
     epoch_seconds=$(date +%s)
+    sql_query="INSERT INTO wifi_stats (epoch_seconds, signal_level, link_quality) VALUES ($epoch_seconds, $signal_level, $link_quality);"
+    sqlite3 ~/Sqlite/wifi_stats.db "$sql_query"
     echo "$epoch_seconds - Signal level: $signal_level, Link quality $link_quality" >> ./wifi_qual.log
     sleep 1
   done
