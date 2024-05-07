@@ -19,13 +19,14 @@ detect_motion() {
         return
     fi
 
-    local img1="${imgs[0]}"
-    local img2="${imgs[1]}"
+    local img1="${imgs[0]}"  # This should give the full path
+    local img2="${imgs[1]}"  # This should give the full path
 
+    echo "Calling Python script with:"
     echo "Image 1: $img1"
     echo "Image 2: $img2"
 
-    local motion_result=$(python3 ../motion_detect/motion_detect.py "$photo_directory/$img1" "$photo_directory/$img2")
+    local motion_result=$(python3 ../motion_detect/motion_detect.py "$img1" "$img2")
     echo "$motion_result"
 }
 
