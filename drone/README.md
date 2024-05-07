@@ -1,5 +1,23 @@
 # Drone
 
+## Wifi log
+When the image sync script is running, the wifi quality is logged to the sqlite database `wifi_stats.db`.
+
+The database was created with:
+```bash
+sqlite3 wifi_stats.db
+```
+
+And the table was created with:
+```sql
+CREATE TABLE wifi_stats (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    epoch_seconds INTEGER NOT NULL,
+    signal_level INTEGER,
+    link_quality INTEGER
+);
+```
+
 ## Image sync
 
 ### Setup pi as wildlife cam
