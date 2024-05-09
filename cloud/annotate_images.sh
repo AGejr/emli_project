@@ -10,8 +10,8 @@ do
   echo "Describing $image_path"
   prompt="describe $image_path"
   annotation_data=$(ollama run llava:7b --format json --nowordwrap $prompt 2>/dev/null)
+  echo $annotation_data
   metadata=$(cat $metadata_path)
-  # TODO: add annotation under a single attribute
-  jq -s '.[0] * .[1]' <(echo $annotation_data) <(echo $metadata) > $metadata_path
+  jq -s '.[0] * {annotations: .[1]}' <(echo "$metadata") <(echo "$annotation_data") > "$metadata_path"
   echo "Annotated $image_path"
 done
