@@ -16,9 +16,11 @@ log_usage() {
     echo "$timestamp take_photo.sh $1" >> "$log_file"
 }
 
-
 create_metadata ()
 {
+  while [[ ! -f $3/$2 ]]; do
+    sleep 1
+  done
   echo "Extracting EXIF from $3/$2"
   subject_distance=$(exiftool -SubjectDistance $3/$2 | awk -F': ' '{print $2}')
   exposure_time=$(exiftool -ExposureTime $3/$2 | awk -F': ' '{print $2}')
@@ -36,7 +38,7 @@ create_metadata ()
   "
   echo "Create metadata"
   metadata_filename=$(echo $2 | sed 's/jpg/json/')
-  echo $metadata | tee $3/$metadata_filename
+  echo $metadata > $3/$metadata_filename
   echo "Saved metadata to $3/$metadata_filename"
 }
 
@@ -60,7 +62,7 @@ fi
 file_name=$(date +"%H%M%S_%3N.jpg")
 file_path="$folder_name/$file_name"
 
-rpicam-still -t 0.01 -o $file_path
+rpicam-still -t 0.01 -o $file_path >/dev/null 2>&1
 echo "Saving pic as $file_path"
 
 create_metadata $trigger $file_name $folder_name
