@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Files in {{ folder }}</title>
+</head>
+<body>
+    <h1>Files in {{ folder }}</h1>
+    <ul>
+        {% for file in files %}
+        <li><a href="/{{ folder }}/{{ file }}" download>{{ file }}</a></li>
+        {% endfor %}
+    </ul>
+    <a href="/">Back to directory listing</a>
+</body>
+</html>
