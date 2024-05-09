@@ -56,6 +56,6 @@ do
         COMMAND_LOCK=1  # Set lock to block further commands
         send_commands
         sleep 2
-	COMMAND_LOCK=0  # Release lock after commands are sent
+	    COMMAND_LOCK=0  # Release lock after commands are sent
     fi
 done

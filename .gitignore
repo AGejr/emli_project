@@ -1,2 +1,3 @@
 **/.DS_Store
-**/Images/
+*.jpg
+**/motion_detect_images
