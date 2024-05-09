@@ -1,15 +1,11 @@
 #!/bin/bash
+photo_directory="/tmp/images"
 
 BASE_DIR=$(pwd)
 
 take_photo() {
-    local output=$(./home/emli/Git/emli_project/cam/scripts/take_photo.sh motion 2>&1)
+    local output=$(/home/emli/Git/emli_project/cam/scripts/take_photo.sh motion 2>&1)
     echo "$output"
-    local dir_line=$(echo "$output" | grep 'Making dir')
-    if [[ $dir_line =~ Making\ dir\ (.*) ]]; then
-        photo_directory="/home/emli/Git/emil_project/cam/temp"
-        echo "Using directory: $photo_directory"
-    fi
 }
 
 detect_motion() {
@@ -31,7 +27,7 @@ detect_motion() {
 }
 
 while true; do
-    take_photo
+	take_photo
     sleep 1
     if [ $(ls $photo_directory/*.jpg | wc -l) -ge 2 ]; then
         newest=$(ls -t $photo_directory/*.jpg | head -n 1)
@@ -73,4 +69,3 @@ while true; do
         fi
     fi
 done
-???END

@@ -27,7 +27,7 @@ trigger=$1
 
 # Determine folder based on trigger
 if [[ "$trigger" == "motion" ]]; then
-  folder_name="/home/emli/Git/emli_project/cam/temp"
+  folder_name="/tmp/images"
 else
   folder_name="/home/emli/Git/emli_project/images/$(date +"%Y-%m-%d")"
 fi
