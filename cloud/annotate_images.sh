@@ -12,7 +12,7 @@ do
     continue
   fi
   echo "Describing $image_path"
-  prompt="describe $image_path"
+  prompt="describe $image_path using valid utf-8 characters and use json format"
   annotation_data=$(ollama run llava:7b --format json --nowordwrap $prompt 2>/dev/null)
   metadata=$(cat $metadata_path)
   jq -s '.[0] * {annotations: .[1]}' <(echo "$metadata") <(echo "$annotation_data") > "$metadata_path"
