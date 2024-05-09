@@ -25,7 +25,6 @@ def show_photo_contents(subpath):
         files = [f for f in os.listdir(full_path) if os.path.isfile(os.path.join(full_path, f))]
         return render_template('directory.html', files=files, folder=subpath, base_path='photos')
     else:
-        # Makes files downloadable
         return send_from_directory(os.path.dirname(full_path), os.path.basename(full_path), as_attachment=True)
 
 @app.route('/logs')
