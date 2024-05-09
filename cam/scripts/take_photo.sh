@@ -1,5 +1,22 @@
 #!/bin/bash
 
+log_usage() {
+    local log_dir="../logs" 
+    local log_file="${log_dir}/take_photo.log"
+    
+    if [ ! -d "$log_dir" ]; then
+        mkdir -p "$log_dir"
+    fi
+
+    if [ ! -f "$log_file" ]; then
+        touch "$log_file"
+    fi
+
+    local timestamp=$(date +"%Y-%m-%d %H:%M:%S.%3N%:z")
+    echo "take_photo.sh $1 $timestamp" >> "$log_file"
+}
+
+
 create_metadata ()
 {
   echo "Extracting EXIF from ./$3/$2"
