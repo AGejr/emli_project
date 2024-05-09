@@ -1,0 +1,84 @@
+{
+  "File Name": "124601_375.jpg",
+  "Create Date": "2024-05-09 12:46:03.446+02:00",
+  "Create Seconds Epoch": 1715251563.448,
+  "Trigger": "manual",
+  "Subject Distance": "0.3650967506 m",
+  "Exposure Time": "1/33",
+  "ISO": 127,
+  "Drone Copy": {
+    "Drone ID": "WILDDRONE-001",
+    "Seconds Epoch": 1715251613
+  },
+  "annotations": {
+    "item_list": [
+      {
+        "type": "Electronic components",
+        "quantity": 5,
+        "description": "Assorted electronic parts in clear plastic containers."
+      },
+      {
+        "type": "Tools",
+        "quantity": 2,
+        "description": "Basic tools for electronics repair and assembly."
+      }
+    ],
+    "image_url": "https://example.com/items-in-container.jpg",
+    "background": {
+      "color": "#f0f0f0",
+      "type": "Wall"
+    },
+    "item_containers": [
+      {
+        "type": "Plastic container",
+        "quantity": 2,
+        "description": "Clear plastic containers with yellow labels."
+      }
+    ],
+    "room_type": "office",
+    "floor_color": "gray",
+    "lighting": {
+      "natural": false,
+      "artificial": true
+    },
+    "window": {
+      "presence": false,
+      "tint": "frosted",
+      "size": "large",
+      "location": "far end of room"
+    },
+    "furniture": [
+      {
+        "type": "desk",
+        "quantity": "1"
+      },
+      {
+        "type": "chairs",
+        "quantity": "4"
+      }
+    ],
+    "electrical_outlets": {
+      "visible": false,
+      "capacity": "4"
+    },
+    "wall_decor": [
+      {
+        "item": "paper notice",
+        "location": "on wall near window"
+      },
+      {
+        "item": "artwork",
+        "location": "central area of room"
+      }
+    ],
+    "cleanliness": {
+      "condition": "clean",
+      "upkeep": "maintained"
+    },
+    "doors": {
+      "presence": true,
+      "material": "glass",
+      "locked": false
+    }
+  }
+}

@@ -1,0 +1,55 @@
+{
+  "File Name": "124601_375.jpg",
+  "Create Date": "2024-05-09 12:46:03.446+02:00",
+  "Create Seconds Epoch": 1715251563.448,
+  "Trigger": "manual",
+  "Subject Distance": "0.3650967506 m",
+  "Exposure Time": "1/33",
+  "ISO": 127,
+  "Drone Copy": {
+    "Drone ID": "WILDDRONE-001",
+    "Seconds Epoch": 1715251613
+  },
+  "annotations": {
+    "item_list": [
+      {
+        "type": "Electronic components",
+        "quantity": 5,
+        "description": "Assorted electronic parts in clear plastic containers."
+      },
+      {
+        "type": "Tools",
+        "quantity": 2,
+        "description": "Basic tools for electronics repair and assembly."
+      }
+    ],
+    "image_url": "https://example.com/items-in-container.jpg",
+    "background": {
+      "color": "#f0f0f0",
+      "type": "Wall"
+    },
+    "item_containers": [
+      {
+        "type": "Plastic container",
+        "quantity": 2,
+        "description": "Clear plastic containers with yellow labels."
+      }
+    ],
+    "image": {
+      "url": "https://www.example.com/image-of-a-box-with-electronics",
+      "description": "Image of a box with various electronic components, such as circuit boards and possibly some wiring or connectors."
+    },
+    "components": [
+      {
+        "component_type": "Circuit Board",
+        "quantity": 2,
+        "image_url": "https://www.example.com/component-images/circuit-board-2.jpg"
+      },
+      {
+        "component_type": "Connector or Wire",
+        "quantity": 1,
+        "image_url": "https://www.example.com/component-images/connector-or-wire.jpg"
+      }
+    ]
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "File Name": "124628_565.jpg",
+  "Create Date": "2024-05-09 12:46:31.000+02:00",
+  "Create Seconds Epoch": 1715251591.002,
+  "Trigger": "manual",
+  "Subject Distance": "0.6497725796 m",
+  "Exposure Time": "1/33",
+  "ISO": 146,
+  "Drone Copy": {
+    "Drone ID": "WILDDRONE-001",
+    "Seconds Epoch": 1715251613
+  },
+  "annotations": {
+    "image_url": "https://example.com/image.jpg",
+    "description": {
+      "room": "The room appears to be an office or workspace.",
+      "items": [
+        {
+          "type": "soda can",
+          "location": "In the foreground, a soda can is visible on the table."
+        },
+        {
+          "type": "keyboard",
+          "location": "In the background, there appears to be a keyboard, possibly for a computer or other electronic device."
+        }
+      ]
+    },
+    "background": "The background is blurred, but it appears to be a room with some items on a surface. There's an object that resembles a can of soda, a black circular object, and what might be a keyboard or mouse on the table."
+  }
+}
