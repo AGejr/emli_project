@@ -1,5 +1,9 @@
 #!/bin/bash
 
+git_repo_path=$(git rev-parse --show-toplevel)
+images_local_path="$git_repo_path/images/"
+images_remote_path="/home/emli/Git/emli_project/images/"
+
 function log_wifi_stats ()
 {
   echo "Starting wifi logging"
@@ -8,7 +12,7 @@ function log_wifi_stats ()
     link_quality=$(cat /proc/net/wireless | grep $1 | tr -s ' ' | cut -d ' ' -f 3)
     epoch_seconds=$(date +%s)
     sql_query="INSERT INTO wifi_stats (epoch_seconds, signal_level, link_quality) VALUES ($epoch_seconds, $signal_level, $link_quality);"
-    sqlite3 ./wifi_stats.db "$sql_query"
+    sqlite3 $git_repo_path/drone/wifi_stats.db "$sql_query"
     sleep 1
   done
 }
@@ -16,14 +20,14 @@ function log_wifi_stats ()
 function sync_images ()
 {
   echo "Syncing images..."
-  rsync -avz --progress emli@10.0.0.10:/home/emli/Images ./
+  rsync -avz --progress emli@10.0.0.10:$images_remote_path $images_local_path
   echo "Images synced"
 }
 
 function sync_local_to_remote ()
 {
   echo "Syncing local to remote..."
-  rsync -avz --progress ./Images/ emli@10.0.0.10:/home/emli/Images
+  rsync -avz --progress $images_local_path emli@10.0.0.10:$images_remote_path
   echo "Files synced"
 
 }
@@ -32,7 +36,7 @@ function update_metadata ()
 {
   drone_id="WILDDRONE-001"
   epoch_seconds=$(date +%s)
-  metadata_files=$(find ./Images -type f -name '*.json')
+  metadata_files=$(find $images_local_path -type f -name '*.json')
   for metadata_file in $metadata_files
   do
     if jq '.["Drone Copy"]' "$metadata_file" | grep -q null; then
@@ -54,7 +58,7 @@ while [[ true ]]; do
     echo "EMLI-TEAM-16 wifi visible"
     # If already connected to the network then sync images
     if [[ $(nmcli -t -f active,ssid dev wifi | grep '^yes' | cut -d ':' -f2) == 'EMLI-TEAM-16' ]]; then
-      ./sync_time.sh
+      $git_repo_path/drone/sync_time.sh
       log_wifi_stats wlp4s0 &
       log_wifi_stats_pid=$!
       sync_images
@@ -65,7 +69,7 @@ while [[ true ]]; do
       nmcli device wifi connect EMLI-TEAM-16
       if [[ $? -eq 0 ]]; then
         echo "Connected to wifi"
-        ./sync_time.sh
+        $git_repo_path/drone/sync_time.sh
         log_wifi_stats wlp4s0 &
         log_wifi_stats_pid=$!
         sync_images

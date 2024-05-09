@@ -1,5 +1,9 @@
 #!/bin/bash
-image_files=$(find ./Images -type f -name '*.jpg')
+
+git_repo_path=$(git rev-parse --show-toplevel)
+images_local_path="$git_repo_path/images/"
+image_files=$(find $images_local_path -type f -name '*.jpg')
+
 for image_path in $image_files
 do
   metadata_path=$(echo $image_path | sed 's/jpg/json/')

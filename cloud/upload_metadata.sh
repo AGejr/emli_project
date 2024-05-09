@@ -11,7 +11,7 @@ function add_metadata ()
 branch=$(git branch --show-current)
 metadata_branch="metadata"
 
-if [[ -ne $branch $metadata_branch ]]; then
+if [[ $branch != $metadata_branch ]]; then
   git add .
   git stash
   git switch $metadata_branch
