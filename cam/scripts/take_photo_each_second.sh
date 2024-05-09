@@ -15,8 +15,8 @@ detect_motion() {
         return
     fi
 
-    local img1="${imgs[0]}"  # This should give the full path
-    local img2="${imgs[1]}"  # This should give the full path
+    local img1="${imgs[0]}"
+    local img2="${imgs[1]}"
 
     echo "Calling Python script with:"
     echo "Image 1: $img1"
@@ -39,7 +39,6 @@ while true; do
         motion_output=$(detect_motion)
         echo "$motion_output"
         if [[ "$motion_output" == *"Motion detected"* ]]; then
-	    
         echo "Motion detected - keeping image"
             
 	    cp "$newest" "/home/emli/Git/emli_project/images"
