@@ -13,7 +13,7 @@ log_usage() {
     fi
 
     local timestamp=$(date +"%Y-%m-%d %H:%M:%S.%3N%:z")
-    echo "take_photo.sh $1 $timestamp" >> "$log_file"
+    echo "$timestamp take_photo.sh $1" >> "$log_file"
 }
 
 
