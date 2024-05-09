@@ -8,9 +8,9 @@
     <h1>Files in {{ folder }}</h1>
     <ul>
         {% for file in files %}
-        <li><a href="/{{ folder }}/{{ file }}" download>{{ file }}</a></li>
+        <li><a href="/{{ base_path }}/{{ folder }}/{{ file }}" download>{{ file }}</a></li>
         {% endfor %}
     </ul>
-    <a href="/">Back to directory listing</a>
+    <a href="/">Back to Main Directory</a>
 </body>
 </html>

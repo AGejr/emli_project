@@ -5,44 +5,39 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index.html', folders=['logs', 'photos'])
 
 @app.route('/photos')
-def folder_a():
-    # Show picture and metadata files
-    files = list_files('/home/emli/Git/emli_project/path/to/photo/folder')
-    return render_template('directory.html', files=files, folder='photos')
+def show_photos():
+    # List folders within the photos folder
+    photos_path = '/home/emli/Git/emli_project/photos'
+    try:
+        directories = [d for d in os.listdir(photos_path) if os.path.isdir(os.path.join(photos_path, d))]
+        return render_template('photos.html', directories=directories, base_path='photos')
+    except FileNotFoundError:
+        abort(404)
+
+@app.route('/photos/<path:subpath>')
+def show_photo_contents(subpath):
+    # List files within each photos folder
+    full_path = os.path.join('/home/emli/Git/emli_project/photos', subpath)
+    if os.path.isdir(full_path):
+        files = [f for f in os.listdir(full_path) if os.path.isfile(os.path.join(full_path, f))]
+        return render_template('directory.html', files=files, folder=subpath, base_path='photos')
+    else:
+        # Makes files downloadable
+        return send_from_directory(os.path.dirname(full_path), os.path.basename(full_path), as_attachment=True)
 
 @app.route('/logs')
-def folder_b():
-    # Show log files
-    files = list_files('/home/emli/Git/emli_project/path/to/log/folder')
-    return render_template('directory.html', files=files, folder='logs')
-
-@app.route('/photos/<path:filename>')
-def folder_a_files(filename):
-    # Make files in folder downloadable
-    directory = '/home/emli/Git/emli_project/path/to/photo/folder'
+def show_logs():
+    # Path to the log file
+    log_file_path = '/home/emli/Git/emli_project/path/logs/logfile.log'
     try:
-        return send_from_directory(directory, filename, as_attachment=True)
+        with open(log_file_path, 'r') as file:
+            log_contents = file.read()
+        return render_template('logs.html', log_contents=log_contents)
     except FileNotFoundError:
         abort(404)
-
-@app.route('/logs/<path:filename>')
-def folder_b_files(filename):
-    # Make logs downloadable
-    directory = '/home/emli/Git/emli_project/path/to/log/folder'
-    try:
-        return send_from_directory(directory, filename, as_attachment=True)
-    except FileNotFoundError:
-        abort(404)
-
-def list_files(directory):
-    # List files in folder
-    try:
-        return [f for f in os.listdir(directory) if os.path.isfile(os.path.join(directory, f))]
-    except OSError:
-        return []
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=5000)
