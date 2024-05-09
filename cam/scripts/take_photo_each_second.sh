@@ -7,7 +7,7 @@ take_photo() {
     echo "$output"
     local dir_line=$(echo "$output" | grep 'Making dir')
     if [[ $dir_line =~ Making\ dir\ (.*) ]]; then
-        photo_directory="${BASE_DIR}/${BASH_REMATCH[1]}"  # Use full path for clarity
+        photo_directory="${BASE_DIR}/${BASH_REMATCH[1]}"
         echo "Using directory: $photo_directory"
     fi
 }
@@ -19,8 +19,8 @@ detect_motion() {
         return
     fi
 
-    local img1="${imgs[0]}"  # This should give the full path
-    local img2="${imgs[1]}"  # This should give the full path
+    local img1="${imgs[0]}"
+    local img2="${imgs[1]}"
 
     echo "Calling Python script with:"
     echo "Image 1: $img1"
@@ -38,13 +38,10 @@ while true; do
         echo "$motion_output"
         if [[ "$motion_output" == *"Motion detected"* ]]; then
             echo "Motion detected - keeping images."
-            # In this case, keep both images and do nothing else
         else
-            # If no motion detected, delete the oldest image
             oldest=$(ls $photo_directory/*.jpg -t | tail -n 1)
             echo "Removing oldest image: $oldest"
             rm -- "$oldest"
-            # Remove the corresponding JSON file
             oldest_json="${oldest%.jpg}.json"
             if [ -f "$oldest_json" ]; then
                 rm -- "$oldest_json"
