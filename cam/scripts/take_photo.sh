@@ -1,7 +1,7 @@
 #!/bin/bash
 
 log_usage() {
-    local log_dir="../" 
+    local log_dir="/home/emli/Git/emli_project/cam" 
     local log_file="${log_dir}/take_photo.log"
     
     if [ ! -d "$log_dir" ]; then
@@ -41,6 +41,8 @@ create_metadata ()
 }
 
 trigger=$1
+
+log_usage $trigger
 
 # Determine folder based on trigger
 if [[ "$trigger" == "motion" ]]; then

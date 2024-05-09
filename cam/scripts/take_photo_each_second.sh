@@ -1,8 +1,7 @@
 #!/bin/bash
 photo_directory="/tmp/images"
 
-BASE_DIR=$(pwd)
-
+my_dir="/home/emli/Git/emli_project/images/"
 take_photo() {
     local output=$(/home/emli/Git/emli_project/cam/scripts/take_photo.sh motion 2>&1)
     echo "$output"
@@ -26,8 +25,15 @@ detect_motion() {
     echo "$motion_result"
 }
 
+
+
 while true; do
-	take_photo
+    name=$(date +"%Y-%m-%d")
+    echo "$my_dir$name"
+    if	[ ! -d "$my_dir$name"  ]; then
+	mkdir "$my_dir$name"
+    fi
+    take_photo
     sleep 1
     if [ $(ls $photo_directory/*.jpg | wc -l) -ge 2 ]; then
         newest=$(ls -t $photo_directory/*.jpg | head -n 1)
@@ -40,9 +46,8 @@ while true; do
         echo "$motion_output"
         if [[ "$motion_output" == *"Motion detected"* ]]; then
         echo "Motion detected - keeping image"
-            
-	    cp "$newest" "/home/emli/Git/emli_project/images"
-	    cp "$newest_json" "/home/emli/Git/emli_project/images"
+	    cp "$newest" "/home/emli/Git/emli_project/images/$name/"
+	    cp "$newest_json" "/home/emli/Git/emli_project/images/$name/"
 
         echo "Images and json had been coopied"    
 

@@ -10,7 +10,7 @@ def index():
 @app.route('/photos')
 def show_photos():
     # List folders within the photos folder
-    photos_path = '/home/emli/Git/emli_project/photos'
+    photos_path = '/home/emli/Git/emli_project/images'
     try:
         directories = [d for d in os.listdir(photos_path) if os.path.isdir(os.path.join(photos_path, d))]
         return render_template('photos.html', directories=directories, base_path='photos')
@@ -20,7 +20,7 @@ def show_photos():
 @app.route('/photos/<path:subpath>')
 def show_photo_contents(subpath):
     # List files within each photos folder
-    full_path = os.path.join('/home/emli/Git/emli_project/photos', subpath)
+    full_path = os.path.join('/home/emli/Git/emli_project/images', subpath)
     if os.path.isdir(full_path):
         files = [f for f in os.listdir(full_path) if os.path.isfile(os.path.join(full_path, f))]
         return render_template('directory.html', files=files, folder=subpath, base_path='photos')
@@ -30,7 +30,7 @@ def show_photo_contents(subpath):
 @app.route('/logs')
 def show_logs():
     # Path to the log file
-    log_file_path = '/home/emli/Git/emli_project/path/logs/logfile.log'
+    log_file_path = '/home/emli/Git/emli_project/cam/take_photo.log'
     try:
         with open(log_file_path, 'r') as file:
             log_contents = file.read()

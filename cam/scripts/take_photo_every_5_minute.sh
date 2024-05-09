@@ -1,6 +1,6 @@
 #!/bin/bash
 
-SCRIPT_PATH="./take_photo.sh"
+SCRIPT_PATH="/home/emli/Git/emli_project/cam/scripts/take_photo.sh"
 
 while true
 do
