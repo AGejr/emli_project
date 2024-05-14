@@ -18,13 +18,10 @@ log_usage() {
 
 create_metadata ()
 {
-  while [[ ! -f $3/$2 ]]; do
-    sleep 1
-  done
-  echo "Extracting EXIF from $3/$2"
-  subject_distance=$(exiftool -SubjectDistance $3/$2 | awk -F': ' '{print $2}')
-  exposure_time=$(exiftool -ExposureTime $3/$2 | awk -F': ' '{print $2}')
-  iso=$(exiftool -ISO $3/$2 | awk -F': ' '{print $2}')
+  echo "Extracting EXIF from $file_path"
+  subject_distance=$(exiftool -SubjectDistance "$file_path" | awk -F': ' '{print $2}')
+  exposure_time=$(exiftool -ExposureTime "$file_path" | awk -F': ' '{print $2}')
+  iso=$(exiftool -ISO "$file_path" | awk -F': ' '{print $2}')
   metadata="
   {
     \"File Name\": \"$2\",
