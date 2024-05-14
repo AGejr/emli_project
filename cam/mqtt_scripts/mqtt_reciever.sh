@@ -25,7 +25,6 @@ do
     if [[ $rain_detect -eq 1 ]]; then
         echo "Rain detected! Activating wipers."
 	mosquitto_pub -h $BROKER_IP -t $TOPIC_PUBLISH -m "activate"
-	sleep 2
     fi
 done
 
