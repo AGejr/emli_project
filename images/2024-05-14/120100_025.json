@@ -1,0 +1,30 @@
+{
+  "File Name": "120100_025.jpg",
+  "Create Date": "2024-05-14 12:01:02.442+02:00",
+  "Create Seconds Epoch": 1715680862.444,
+  "Trigger": "external",
+  "Subject Distance": "0.6020469597 m",
+  "Exposure Time": "1/45",
+  "ISO": 112,
+  "Drone Copy": {
+    "Drone ID": "WILDDRONE-001",
+    "Seconds Epoch": 1715693193
+  },
+  "annotations": {
+    "image_path": "path-to-your-image.jpg",
+    "objects": [
+      {
+        "type": "phone",
+        "location": "centre of table",
+        "condition": "new",
+        "orientation": "horizontal"
+      },
+      {
+        "type": "table",
+        "material": "metal",
+        "color": "silver",
+        "size": "medium"
+      }
+    ]
+  }
+}
