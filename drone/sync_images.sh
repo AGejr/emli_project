@@ -83,7 +83,7 @@ while [[ true ]]; do
   sleep 1
 done
 
-nmcli connection down EMLI-TEAM-16
+echo "Stopping wifi logging"
 kill $log_wifi_stats_pid
-trap "echo 'Stopping wifi logging'; kill $log_wifi_stats_pid" EXIT
+nmcli connection down EMLI-TEAM-16
 exit 0
